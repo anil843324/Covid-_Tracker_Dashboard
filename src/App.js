@@ -2,6 +2,7 @@
 import { FormControl, Select, MenuItem } from '@mui/material';
 import { useEffect, useState } from 'react';
 import './App.css';
+import InfoBox from './InfoBox';
 
 function App() {
 
@@ -12,7 +13,6 @@ function App() {
   useEffect(() => {
 
     const getCountriesData = async () => {
-
       await fetch("https://disease.sh/v3/covid-19/countries")
         .then((response) => response.json())
         .then((data) => {
@@ -40,6 +40,10 @@ function App() {
   return (
     <div className="App">
 
+
+     {/* Header  */}
+      {/* Title + select input dropdown filed */}
+
       <div className="app_header">
         <h1>COVID-19 TRACKER</h1>
 
@@ -59,13 +63,17 @@ function App() {
           </Select>
         </FormControl>
       </div>
-      {/* Header  */}
-      {/* Title + select input dropdown filed */}
+     
+       
+       <div className="app_stats">
+
+               <InfoBox title="Coronavirus Cases" cases={1256} total={2000} />
+               <InfoBox title="Recovered" cases={2256}  total={3000} />
+               <InfoBox title="Deaths" cases={156}  total={4000}/>
+       </div>
 
 
-      {/* InfoBoxs */}
-      {/* InfoBoxs */}
-      {/* InfoBoxs */}
+     
 
 
       {/* Table */}
