@@ -6,7 +6,8 @@ import './App.css';
 function App() {
 
   const [countries, setCountires] = useState([])
-
+ 
+   const [country,setCounrty]=useState('worldwide')
 
   useEffect(() => {
 
@@ -15,25 +16,25 @@ function App() {
       await fetch("https://disease.sh/v3/covid-19/countries")
         .then((response) => response.json())
         .then((data) => {
-
           const countries = data.map((country) => (
             {
               name: country.country, // United State, United Kingdom
-              value: country.iso3  // UK ,USA , IND
-
+              value:country.countryInfo.iso3  // UK ,USA , IND
             }
-
           ))
           setCountires(countries)
-
         })
     }
     getCountriesData()
 
   }, [])
 
-
-
+ 
+  const onCountryChange= async(event)=>{
+     const countryCode=event.target.value;
+     setCounrty(countryCode)
+     
+  }
 
 
   return (
@@ -46,9 +47,10 @@ function App() {
 
           <Select
             variant='outlined'
-             value={"abc"}
-             
+             value={country}
+             onChange={ onCountryChange}
           >
+           <MenuItem value='worldwide'>Worldwide</MenuItem>
             {
               countries.map( (country,index) => (
                 <MenuItem key={index} value={country.value}>{country.name}</MenuItem>
