@@ -2,6 +2,8 @@
 import { FormControl, Select, MenuItem ,Card ,CardContent} from '@mui/material';
 import { useEffect, useState } from 'react';
 import './App.css';
+import LineGraph from './components/LineGraph';
+
 import InfoBox from './InfoBox';
 import Map from './Map';
 import Table from './Table';
@@ -109,13 +111,6 @@ function App() {
           <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
         </div>
 
-
-
-
-
-
-
-
         {/* Map */}
         <Map />
 
@@ -129,10 +124,11 @@ function App() {
                <h3>Live Cases by Country</h3>
                {/* Table */}
                <Table countries={tableData} />
-                
-
               <h3>Worldwide new cases</h3>
              {/* Graph */}
+             <LineGraph/>
+          
+
           </CardContent>
 
 

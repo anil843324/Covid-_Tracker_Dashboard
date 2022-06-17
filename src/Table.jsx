@@ -4,9 +4,9 @@ const Table = ({ countries }) => {
     return (
         <div className='table'>
 
-            {countries.map(country => (
+            {countries.map( (country,index) => (
 
-                <tr>
+                <tr key={index} >
                     <td>{country.country}</td>
                     <td>
                         <strong>{country.cases}</strong>
