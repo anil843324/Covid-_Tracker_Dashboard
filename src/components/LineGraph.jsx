@@ -97,7 +97,7 @@ const LineGraph = ({casesType="cases"}) => {
             .then(data => {
                 console.log(data)
                 const chartData = buildChartData(data, 'cases')
-                console.log('chart Data', chartData)
+              
                 setData(chartData)
             })
           }

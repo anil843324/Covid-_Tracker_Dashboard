@@ -22,7 +22,6 @@ function App() {
    const [tableData,setTableData]=useState([])
 
  
-  
 
    const [mapCenter,setMapCenter]=useState([21.7679,78.8718])
    const [mapZoom, setMapZoom]=useState(3) 
@@ -64,7 +63,7 @@ function App() {
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
    
-    console.log(country)
+    // console.log(country)
      
      const  url=countryCode==='worldwide' ? 'https://disease.sh/v3/covid-19/all' : `https://disease.sh/v3/covid-19/countries/${countryCode}`
 
@@ -76,15 +75,17 @@ function App() {
     //  All of the data.....
 // from the country response 
          setCountryInfo(data)
-         console.log(data)
+        
+        
          setMapCenter( [data.countryInfo.lat,data.countryInfo.long])
         
          setMapZoom(4)      
-         
+       
      })
 
 
   }
+
 
    
    
