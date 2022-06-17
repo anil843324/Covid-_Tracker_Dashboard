@@ -2,11 +2,14 @@ import { Card, CardContent, Typography } from '@mui/material'
 import React from 'react'
 import "./InfoBox.css"
 
-const InfoBox = ({ title, cases, total }) => {
+const InfoBox = ({ title, cases, total,...props }) => {
     return (
         <div>
 
-            <Card  className='infoBox'>
+            <Card  className='infoBox'
+             onClick={props.onClick}
+            
+            >
                 <CardContent>
                     {/* Title  i.e Coronavirous cases*/}
 

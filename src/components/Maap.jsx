@@ -41,11 +41,11 @@ import { showDataOnMap } from "../Util";
     />
             
              
-            {showDataOnMap(countries,casesType)}
+           
             {/* loop through countries and darw circles on the screen  */}
             
           <MyComponent/>
-
+          {showDataOnMap(countries,casesType)}
          
    
   </MapContainer>,
