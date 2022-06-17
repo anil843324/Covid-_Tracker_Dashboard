@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer , TileLayer ,useMap} from "react-leaflet";
 import "../components/Maap.css"
-// import { showDataOnMap } from "../util";
+import { showDataOnMap } from "../Util";
 
- const Maap =({center, zoom})=> {
+
+ const Maap =({ countries,casesType,center, zoom})=> {
 
         
 
@@ -38,10 +39,14 @@ import "../components/Maap.css"
       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
-
+            
+             
+            {showDataOnMap(countries,casesType)}
+            {/* loop through countries and darw circles on the screen  */}
+            
           <MyComponent/>
 
-
+         
    
   </MapContainer>,
     </div>

@@ -1,5 +1,6 @@
 import { Card, CardContent, Typography } from '@mui/material'
 import React from 'react'
+import "./InfoBox.css"
 
 const InfoBox = ({ title, cases, total }) => {
     return (

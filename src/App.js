@@ -7,7 +7,7 @@ import LineGraph from './components/LineGraph';
 import InfoBox from './InfoBox';
 import Maap from './components/Maap';
 import Table from './Table';
-import { sortData } from './Util';
+import { prettyPrintStat, sortData } from './Util';
 import "leaflet/dist/leaflet.css"
 
 
@@ -21,9 +21,11 @@ function App() {
 
    const [tableData,setTableData]=useState([])
 
+    const [mapCountries,setMapCountries]=useState([])
+
  
 
-   const [mapCenter,setMapCenter]=useState([21.7679,78.8718])
+   const [mapCenter,setMapCenter]=useState([34.80746,-40.4796])
    const [mapZoom, setMapZoom]=useState(3) 
 
     // for worldwide data collect first time whole app render
@@ -49,7 +51,7 @@ function App() {
           ))
 
              const sorttedData=sortData(data)
-
+            setMapCountries(data)
            setTableData(sorttedData)
 
           setCountires(countries)
@@ -122,13 +124,14 @@ function App() {
 
         <div className="app_stats">
 
-          <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} />
-          <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
-          <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
+          <InfoBox title="Coronavirus Cases" cases={  prettyPrintStat(countryInfo.todayCases)} total={ prettyPrintStat(countryInfo.cases)} />
+          <InfoBox title="Recovered" cases={ prettyPrintStat(countryInfo.todayRecovered)} total={ prettyPrintStat(countryInfo.recovered)} />
+          <InfoBox title="Deaths" cases={ prettyPrintStat(countryInfo.todayDeaths)} total={ prettyPrintStat(countryInfo.deaths)} />
         </div>
 
         {/* Map */}
         <Maap 
+              countries={mapCountries}
                center={mapCenter}
                zoom={mapZoom}
         />
