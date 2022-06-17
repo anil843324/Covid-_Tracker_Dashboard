@@ -5,9 +5,11 @@ import './App.css';
 import LineGraph from './components/LineGraph';
 
 import InfoBox from './InfoBox';
-import Map from './Map';
+import Maap from './components/Maap';
 import Table from './Table';
 import { sortData } from './Util';
+import "leaflet/dist/leaflet.css"
+
 
 function App() {
 
@@ -18,6 +20,12 @@ function App() {
    const [countryInfo,setCountryInfo]=useState({})
 
    const [tableData,setTableData]=useState([])
+
+ 
+  
+
+   const [mapCenter,setMapCenter]=useState([21.7679,78.8718])
+   const [mapZoom, setMapZoom]=useState(3) 
 
     // for worldwide data collect first time whole app render
    useEffect(() => {
@@ -50,7 +58,7 @@ function App() {
     }
     getCountriesData()
 
-  }, [])
+  }, [mapCenter])
 
 
   const onCountryChange = async (event) => {
@@ -65,13 +73,20 @@ function App() {
      .then(data=>{
          
          setCounrty(countryCode)
-//  All of the data.....
+    //  All of the data.....
 // from the country response 
          setCountryInfo(data)
+         console.log(data)
+         setMapCenter( [data.countryInfo.lat,data.countryInfo.long])
+        
+         setMapZoom(4)      
+         
      })
 
 
   }
+
+   
    
 
 
@@ -112,7 +127,10 @@ function App() {
         </div>
 
         {/* Map */}
-        <Map />
+        <Maap 
+               center={mapCenter}
+               zoom={mapZoom}
+        />
 
       </div>
 

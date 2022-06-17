@@ -5,9 +5,11 @@ import {Chart as ChartJS, Title, Tooltip, LineElement, Legend, CategoryScale, Li
 ChartJS.register( Title, Tooltip, LineElement, Legend,CategoryScale, LinearScale, PointElement, Filler )
 const options = {
 
-    legend: {
-        display: false,
-    },
+    plugins: {
+        legend: {
+          display: false
+        }
+      },
     elements: {
         point: {
             radius: 0,
