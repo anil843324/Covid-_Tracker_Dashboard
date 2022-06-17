@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import InfoBox from './InfoBox';
 import Map from './Map';
+import Table from './Table';
 
 function App() {
 
@@ -12,6 +13,8 @@ function App() {
   const [country, setCounrty] = useState('worldwide')
 
    const [countryInfo,setCountryInfo]=useState({})
+
+   const [tableData,setTableData]=useState([])
 
     // for worldwide data collect first time whole app render
    useEffect(() => {
@@ -34,6 +37,8 @@ function App() {
               value: country.countryInfo.iso3  // UK ,USA , IND
             }
           ))
+           setTableData(data)
+
           setCountires(countries)
         })
     }
@@ -61,8 +66,7 @@ function App() {
 
 
   }
-    console.log(countryInfo)
-
+   
 
 
   return (
@@ -120,6 +124,8 @@ function App() {
           <CardContent>
                <h3>Live Cases by Country</h3>
                {/* Table */}
+               <Table countries={tableData} />
+                
 
               <h3>Worldwide new cases</h3>
              {/* Graph */}
