@@ -1,6 +1,7 @@
 import numeral from 'numeral'
 import React, { useEffect, useState } from 'react'
 import { Line } from "react-chartjs-2"
+
 import {Chart as ChartJS, Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler  } from 'chart.js';
 ChartJS.register( Title, Tooltip, LineElement, Legend,CategoryScale, LinearScale, PointElement, Filler )
 const options = {
@@ -62,7 +63,7 @@ const options = {
 
 
 
-const buildChartData = (data, casesType = "cases") => {
+const buildChartData = (data, casesType = "cases" ) => {
     const chartData = [];
     let lastDataPoint;
 
@@ -83,7 +84,7 @@ const buildChartData = (data, casesType = "cases") => {
 
 
 
-const LineGraph = ({casesType="cases"}) => {
+const LineGraph = ({casesType="cases",...props}) => {
 
 
     const [data, setData] = useState({});
@@ -111,7 +112,7 @@ const LineGraph = ({casesType="cases"}) => {
 
 
     return (
-        <div>
+        <div className={props.className}>
 
            
              

@@ -23,11 +23,13 @@ function App() {
 
   const [mapCountries, setMapCountries] = useState([])
 
-  const [casesType, setCasesType] = useState("cases")
+  
 
 
   const [mapCenter, setMapCenter] = useState([34.80746, -40.4796])
   const [mapZoom, setMapZoom] = useState(3)
+
+  const [casesType, setCasesType] = useState("cases")
 
   // for worldwide data collect first time whole app render
   useEffect(() => {
@@ -126,14 +128,26 @@ function App() {
         <div className="app_stats">
 
           <InfoBox
+           isRed
+          active={casesType==='cases'}
             onClick={  (e) => setCasesType('cases') }
-           title="Coronavirus Cases" cases={prettyPrintStat(countryInfo.todayCases)} total={prettyPrintStat(countryInfo.cases)} />
+           title="Coronavirus Cases" 
+           cases={prettyPrintStat(countryInfo.todayCases)} 
+           total={prettyPrintStat(countryInfo.cases)} />
           <InfoBox 
+           
+            active={casesType==='recovered'}
            onClick={ (e)=> setCasesType('recovered') }
-          title="Recovered" cases={prettyPrintStat(countryInfo.todayRecovered)} total={prettyPrintStat(countryInfo.recovered)} />
+          title="Recovered" 
+          cases={prettyPrintStat(countryInfo.todayRecovered)} 
+          total={prettyPrintStat(countryInfo.recovered)} />
           <InfoBox
+           isRed
+           active={casesType==='deaths'}
            onClick={ (e)=> setCasesType('deaths') }
-           title="Deaths" cases={prettyPrintStat(countryInfo.todayDeaths)} total={prettyPrintStat(countryInfo.deaths)} />
+           title="Deaths" 
+           cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={prettyPrintStat(countryInfo.deaths)} />
         </div>
 
         {/* Map */}
@@ -154,9 +168,9 @@ function App() {
           <h3>Live Cases by Country</h3>
           {/* Table */}
           <Table countries={tableData} />
-          <h3>Worldwide new cases</h3>
+          <h3 className='app_graphTitle'>Worldwide new  {casesType}</h3>
           {/* Graph */}
-          <LineGraph />
+          <LineGraph className='app_graph' casesType={casesType} />
 
 
         </CardContent>
